@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input, button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+    </header>
+    <div class="container">
+        <h2>Add Book</h2>
+        <div class="form-group">
+            <label for="book-title">Title</label>
+            <input type="text" id="book-title" placeholder="Enter book title">
+        </div>
+        <div class="form-group">
+            <label for="book-author">Author</label>
+            <input type="text" id="book-author" placeholder="Enter book author">
+        </div>
+        <button id="add-book">Add Book</button>
+
+        <h2>Borrower Records</h2>
+        <div class="form-group">
+            <label for="borrower-name">Borrower Name</label>
+            <input type="text" id="borrower-name" placeholder="Enter borrower name">
+        </div>
+        <div class="form-group">
+            <label for="borrowed-book">Borrowed Book Title</label>
+            <input type="text" id="borrowed-book" placeholder="Enter borrowed book title">
+        </div>
+        <button id="record-borrower">Record Borrower</button>
+
+        <h2>Books List</h2>
+        <table id="books-list">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h2>Borrower List</h2>
+        <table id="borrower-list">
+            <thead>
+                <tr>
+                    <th>Borrower Name</th>
+                    <th>Book Title</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const booksList = document.getElementById('books-list').querySelector('tbody');
+        const borrowerList = document.getElementById('borrower-list').querySelector('tbody');
+
+        document.getElementById('add-book').addEventListener('click', () => {
+            const title = document.getElementById('book-title').value;
+            const author = document.getElementById('book-author').value;
+
+            if (title && author) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${title}</td><td>${author}</td>`;
+                booksList.appendChild(row);
+
+                document.getElementById('book-title').value = '';
+                document.getElementById('book-author').value = '';
+            } else {
+                alert('Please fill in both fields!');
+            }
+        });
+
+        document.getElementById('record-borrower').addEventListener('click', () => {
+            const name = document.getElementById('borrower-name').value;
+            const book = document.getElementById('borrowed-book').value;
+
+            if (name && book) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${name}</td><td>${book}</td>`;
+                borrowerList.appendChild(row);
+
+                document.getElementById('borrower-name').value = '';
+                document.getElementById('borrowed-book').value = '';
+            } else {
+                alert('Please fill in both fields!');
+            }
+        });
+    </script>
+</body>
+</html>
